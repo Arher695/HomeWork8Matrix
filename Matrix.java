@@ -3,86 +3,92 @@ package ru.netology;
 import java.util.Random;
 
 public class Matrix {
-    private final static int SIZE = 8;
+    public static final int SIZE = 8;
 
     public static void main(String[] args) {
+        int[][] colors = new int[SIZE][SIZE];
 
-//создание матрицы в программе
+        System.out.println("Оригинал");
+        System.out.println();
 
-        int[][] matrix = createMatrix(SIZE, SIZE);
-
-// вывод матрицы до поворота
-
-        System.out.println("Оригинальнеая матрица");
-        printMatrix(matrix);
-
-// разворот матрицы
-
-        int[][] result = rotateMatrix(matrix, 271);
-
-        //вывод матрицы после поворота
-
-        System.out.println("Повёрнутая матрица");
-        printMatrix(result);
-    }
-
-    private static int[][] rotateMatrix(int[][] matrix, int angle) {
-        int size = matrix.length;
-        int[][] result = new int[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                switch (angle) {
-                    case 90:
-                        result[i][j] = matrix[size - 1 - j][i];
-                        break;
-                    case 180:
-                        result[i][j] = matrix[size - 1 - i][j];
-                        break;
-                    case 270:
-                        result[i][j] = matrix[j][size - 1 - i];
-                        break;
-                    default:
-                        result[i][j] = matrix[i][j];
-                }
+        Random random = new Random();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                colors[i][j] = random.nextInt(256);
             }
         }
-        return result;
-    }
-
-    private static int[][] rotateMatrix(int[][] matrix) {
-        int size = matrix.length;
-        int[][] result = new int[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                result[i][j] = matrix[size - 1 - j][i];
-            }
-        }
-        return result;
-    }
-
-    private static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) { //[i] добавлять для универсальности,
-                // позволяет печатать разные матрицы(не только квадратные).
-                // в сложных расчётах его не ставить.
-                System.out.printf("%4d", matrix[i][j]);
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                System.out.format("%4d", colors[i][j]);
             }
             System.out.println();
         }
-    }
+        System.out.println();
 
-    private static int[][] createMatrix(int rows, int cols) {
-        int[][] matrix = new int[rows][cols];
-        Random random = new Random();
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix[i][j] = random.nextInt(256);
+        int[][] rotatedColors90 = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                rotatedColors90[i][j] = colors[SIZE - 1 - j][i];
+                System.out.format("%4d", rotatedColors90[i][j]);
             }
+            System.out.println();
         }
-        return matrix;
+        System.out.println();
+
+        int[][] rotatedColors180 = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                rotatedColors180[i][j] = colors[SIZE - 1 - i][j];
+                System.out.format("%4d", rotatedColors180[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        int[][] rotatedColors270 = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                rotatedColors270[i][j] = colors[j][SIZE - 1 - i];
+                System.out.format("%4d", rotatedColors270[i][j]);
+            }
+            System.out.println();
+        }
+        /*System.out.println("1. Для поворота на 90 градусов в право, нажмите 1");
+        System.out.println("2. Для поворота на 180 градусов в право, нажмите 2");
+        System.out.println("3. Для поворота 90 градусов в право, нажмите 3");
+        System.out.println(" ");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int operation = Integer.parseInt(input);
+        switch (operation) {
+            case 1:
+                System.out.println("На 90 градусов в право");
+                System.out.println(" ");
+                //int[][] rotatedColors90 = new int[SIZE][SIZE];
+                for (int i = 0; i < SIZE; i++) {
+                    for (int j = 0; j < SIZE; j++) {
+                        rotatedColors90[i][j] = colors[SIZE - 1 - j][i];
+                        System.out.format("%4d", rotatedColors90[i][j]);
+                        break;
+                        case 2:
+                            System.out.println("На 180 градусов в право");
+                            System.out.println(" ");
+
+                            System.out.format("%4d", rotatedColors180[i][j]);
+                            break;
+                        case 3:
+                            System.out.println("На 270 градусов в право");
+                            System.out.println(" ");
+                            System.out.format("%4d", rotatedColors270[i][j]);
+                            break;
+                        default:
+                            System.out.println("Такого номера нет");*/
     }
 }
+
+
+
+
 
 
 
